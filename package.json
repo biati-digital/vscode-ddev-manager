@@ -1,0 +1,654 @@
+{
+  "name": "ddev-manager",
+  "displayName": "DDEV Manager",
+  "description": "",
+  "version": "0.0.3",
+  "publisher": "biati",
+  "preview": true,
+  "author": {
+    "name": "Biati Digital",
+    "url": "https://www.biati.com.mx"
+  },
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Testing",
+    "Other"
+  ],
+  "keywords": [
+    "ddev",
+    "development",
+    "local",
+    "docker",
+    "colima",
+    "manager",
+    "explorer",
+    "deploy"
+  ],
+  "activationEvents": [
+    "onView:biatiddev",
+    "onLanguage:php",
+    "onCommand:biatiddev.start",
+    "onCommand:biatiddev.stop",
+    "onCommand:biatiddev.restart",
+    "onCommand:biatiddev.poweroff",
+    "onCommand:biatiddev.delete",
+    "onCommand:biatiddev.launchInBrowser",
+    "onCommand:biatiddev.launchMailhog",
+    "onCommand:biatiddev.launchPHPMyAdmin",
+    "onCommand:biatiddev.launchDBManager",
+    "onCommand:biatiddev.openConfigFile",
+    "onCommand:biatiddev.createSnapshot",
+    "onCommand:biatiddev.restoreSnapshot",
+    "onCommand:biatiddev.clearSnapshots",
+    "onCommand:biatiddev.editPHPVersion",
+    "onCommand:biatiddev.editNodeJSVersion",
+    "onCommand:biatiddev.sshTerminal",
+    "onCommand:biatiddev.mysqlTerminal",
+    "onCommand:biatiddev.showDDEVOutputChannel",
+    "onTerminalProfile:biatiddev.sshterminal"
+  ],
+  "icon": "assets/icon.png",
+  "galleryBanner": {
+    "color": "#1e2127",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/biati-digital/vscode-ddev-manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/biati-digital/vscode-ddev-manager/issues"
+  },
+  "license": "Apache-2.0",
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "biatiddev",
+          "title": "DDEV Manager",
+          "icon": "assets/ddev-logo.svg"
+        }
+      ]
+    },
+    "views": {
+      "biatiddev": [
+        {
+          "id": "biatiddev",
+          "icon": "assets/ddev-logo.svg",
+          "name": ""
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "biatiddev.start",
+        "title": "DDEV: Start project"
+      },
+      {
+        "command": "biatiddev.stop",
+        "title": "DDEV: Stop project"
+      },
+      {
+        "command": "biatiddev.restart",
+        "title": "DDEV: Restart project"
+      },
+      {
+        "command": "biatiddev.poweroff",
+        "title": "DDEV: Power Off"
+      },
+      {
+        "command": "biatiddev.delete",
+        "title": "DDEV: Delete project"
+      },
+      {
+        "command": "biatiddev.launchInBrowser",
+        "title": "DDEV: Open Project in Browser"
+      },
+      {
+        "command": "biatiddev.launchMailhog",
+        "title": "DDEV: Open Mailhog"
+      },
+      {
+        "command": "biatiddev.launchPHPMyAdmin",
+        "title": "DDEV: Open PHP MyAdmin"
+      },
+      {
+        "command": "biatiddev.launchDBManager",
+        "title": "DDEV: Open Database in App Manager"
+      },
+      {
+        "command": "biatiddev.openConfigFile",
+        "title": "DDEV: Open Config.yaml"
+      },
+      {
+        "command": "biatiddev.createSnapshot",
+        "title": "DDEV: Create Snapshot"
+      },
+      {
+        "command": "biatiddev.restoreSnapshot",
+        "title": "DDEV: Restore Snapshot"
+      },
+      {
+        "command": "biatiddev.clearSnapshots",
+        "title": "DDEV: Clear All Snapshot"
+      },
+      {
+        "command": "biatiddev.editPHPVersion",
+        "title": "DDEV: Change PHP Version"
+      },
+      {
+        "command": "biatiddev.editNodeJSVersion",
+        "title": "DDEV: Change NodeJS Version"
+      },
+      {
+        "command": "biatiddev.sshTerminal",
+        "title": "DDEV: Start SSH session"
+      },
+      {
+        "command": "biatiddev.mysqlTerminal",
+        "title": "DDEV: Start MySQL SSH session"
+      },
+      {
+        "command": "biatiddev.showDDEVOutputChannel",
+        "title": "Show process information",
+        "icon": "$(info)"
+      },
+      {
+        "command": "biatiddev.showTreeLoader",
+        "title": "Loading",
+        "icon": "$(loading~spin)"
+      },
+      {
+        "command": "biatiddev.treeChangeToAllListView",
+        "title": "Toggle between all projects and workspace project",
+        "icon": "$(folder-active)"
+      },
+      {
+        "command": "biatiddev.treeChangeToWorkspaceListView",
+        "title": "Toggle between all projects and workspace project",
+        "icon": "$(list-selection)"
+      },
+      {
+        "command": "biatiddev.treeReloadList",
+        "title": "Reload List",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "biatiddev.treePowerOff",
+        "title": "Poweroff DDEV",
+        "icon": "$(debug-stop)"
+      },
+      {
+        "command": "biatiddev.treeAddProject",
+        "title": "Add New Project",
+        "icon": "$(plus)"
+      },
+      {
+        "command": "biatiddev.contextStart",
+        "title": "Start",
+        "icon": {
+          "dark": "assets/play.svg",
+          "light": "assets/play.svg"
+        }
+      },
+      {
+        "command": "biatiddev.contextStop",
+        "title": "Stop",
+        "icon": {
+          "dark": "assets/stop.svg",
+          "light": "assets/stop.svg"
+        }
+      },
+      {
+        "command": "biatiddev.contextStopOthers",
+        "title": "Stop Others"
+      },
+      {
+        "command": "biatiddev.contextReload",
+        "title": "Restart",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "biatiddev.contextOpenInBrowser",
+        "title": "Open in Browser",
+        "icon": "$(globe)"
+      },
+      {
+        "command": "biatiddev.contextLaunch",
+        "title": "Open in Browser",
+        "icon": "$(link-external)"
+      },
+      {
+        "command": "biatiddev.contextRevealInOS",
+        "title": "Reveal folder",
+        "icon": "$(link-external)"
+      },
+      {
+        "command": "biatiddev.contextOpenProjectInEditor",
+        "title": "Open Project in Editor",
+        "icon": "$(empty-window)"
+      },
+      {
+        "command": "biatiddev.openSSH",
+        "title": "Start SSH Session",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "biatiddev.contextEdit",
+        "title": "Change Version",
+        "icon": "$(pencil)"
+      },
+      {
+        "command": "biatiddev.contextEditPHPini",
+        "title": "Edit PHP.ini"
+      },
+      {
+        "command": "biatiddev.contextOpenConfig",
+        "title": "Open Config.yaml",
+        "icon": "$(pencil)"
+      },
+      {
+        "command": "biatiddev.contextEditProject",
+        "title": "Edit Project"
+      },
+      {
+        "command": "biatiddev.contextCreateSnapshot",
+        "title": "Create Snapshot"
+      },
+      {
+        "command": "biatiddev.contextRestoreSnapshot",
+        "title": "Restore Snapshot"
+      },
+      {
+        "command": "biatiddev.contextClearSnapshot",
+        "title": "Clear All Snapshots"
+      },
+      {
+        "command": "biatiddev.contextDelete",
+        "title": "Delete Project"
+      },
+      {
+        "command": "biatiddev.contextMysqlSSH",
+        "title": "Open connection in terminal",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "biatiddev.contextDBLaunch",
+        "title": "Open database manager",
+        "icon": "$(link-external)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "biatiddev.treeChangeToAllListView",
+          "when": "view == biatiddev && biatiddev.treeListShows == workspace",
+          "group": "navigation@1"
+        },
+        {
+          "command": "biatiddev.treeChangeToWorkspaceListView",
+          "when": "view == biatiddev && biatiddev.treeListShows == all",
+          "group": "navigation@1"
+        },
+        {
+          "command": "biatiddev.treeAddProject",
+          "when": "view == biatiddev && ddev:isRunning",
+          "group": "navigation@1"
+        },
+        {
+          "command": "biatiddev.treeReloadList",
+          "when": "view == biatiddev && !ddev:poweringOff",
+          "group": "navigation@2"
+        },
+        {
+          "command": "biatiddev.treePowerOff",
+          "when": "view == biatiddev && ddev:isRunning",
+          "group": "navigation@3"
+        },
+        {
+          "command": "biatiddev.showTreeLoader",
+          "when": "view == biatiddev && ddev:poweringOff",
+          "group": "navigation@4"
+        },
+        {
+          "command": "biatiddev.showDDEVOutputChannel",
+          "when": "view == biatiddev && ddev:poweringOff",
+          "group": "navigation@5"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "biatiddev.contextStart",
+          "when": "view == biatiddev && viewItem == ddev_inactive",
+          "group": "biatiddev@1"
+        },
+        {
+          "command": "biatiddev.contextStop",
+          "when": "view == biatiddev && viewItem == ddev_active",
+          "group": "biatiddev@1"
+        },
+        {
+          "command": "biatiddev.contextStopOthers",
+          "when": "view == biatiddev && viewItem == ddev_active && ddev:isRunning",
+          "group": "biatiddev@1"
+        },
+        {
+          "command": "biatiddev.showDDEVOutputChannel",
+          "when": "view == biatiddev && viewItem == ddev_loading || viewItem == ddev_doing_action || viewItem == ddev_starting || viewItem == ddev_restarting || viewItem == ddev_stopping || viewItem == ddev_deleting || viewItem =~ /loading$/",
+          "group": "inline"
+        },
+        {
+          "command": "biatiddev.contextStart",
+          "when": "view == biatiddev && viewItem == ddev_inactive",
+          "group": "inline"
+        },
+        {
+          "command": "biatiddev.contextOpenInBrowser",
+          "when": "view == biatiddev && viewItem == ddev_active",
+          "group": "inline@1"
+        },
+        {
+          "command": "biatiddev.openSSH",
+          "when": "view == biatiddev && viewItem == ddev_active",
+          "group": "inline@2"
+        },
+        {
+          "command": "biatiddev.contextReload",
+          "when": "view == biatiddev && viewItem == ddev_active",
+          "group": "inline@3"
+        },
+        {
+          "command": "biatiddev.contextStop",
+          "when": "view == biatiddev && viewItem == ddev_active",
+          "group": "inline@4"
+        },
+        {
+          "command": "biatiddev.contextEditProject",
+          "when": "view == biatiddev",
+          "group": "biatieditddev@1"
+        },
+        {
+          "command": "biatiddev.contextOpenConfig",
+          "when": "view == biatiddev",
+          "group": "biatieditddev@2"
+        },
+        {
+          "command": "biatiddev.contextDelete",
+          "when": "view == biatiddev",
+          "group": "biatieditddev@100"
+        },
+        {
+          "command": "biatiddev.contextCreateSnapshot",
+          "when": "view == biatiddev",
+          "group": "biatiddevsnapshot@1"
+        },
+        {
+          "command": "biatiddev.contextRestoreSnapshot",
+          "when": "view == biatiddev",
+          "group": "biatiddevsnapshot@2"
+        },
+        {
+          "command": "biatiddev.contextClearSnapshot",
+          "when": "view == biatiddev",
+          "group": "biatiddevsnapshot@3"
+        },
+        {
+          "command": "biatiddev.contextEdit",
+          "when": "view == biatiddev && viewItem == ddev_php || viewItem == ddev_nodejs || viewItem == ddev_mutagen",
+          "group": "inline@3"
+        },
+        {
+          "command": "biatiddev.contextLaunch",
+          "when": "view == biatiddev && viewItem == ddev_phpmyadmin || viewItem == ddev_mailhog || viewItem == ddev_url",
+          "group": "inline@2"
+        },
+        {
+          "command": "biatiddev.contextRevealInOS",
+          "when": "view == biatiddev && viewItem == ddev_path",
+          "group": "inline@2"
+        },
+        {
+          "command": "biatiddev.contextOpenProjectInEditor",
+          "when": "view == biatiddev && viewItem == ddev_path",
+          "group": "inline@2"
+        },
+        {
+          "command": "biatiddev.contextDBLaunch",
+          "when": "view == biatiddev && viewItem == ddev_mysql || viewItem == ddev_mariadb || viewItem == ddev_postgre",
+          "group": "inline@1"
+        },
+        {
+          "command": "biatiddev.contextMysqlSSH",
+          "when": "view == biatiddev && viewItem == ddev_mysql",
+          "group": "inline@2"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "biatiddev.showTreeLoader",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.treeReloadList",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.treePowerOff",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.treeAddProject",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.contextStart",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.contextStop",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.contextReload",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.contextOpenInBrowser",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.contextLaunch",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.contextRevealInOS",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.contextOpenProjectInEditor",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.openSSH",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.contextEdit",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.contextEditPHPini",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.contextOpenConfig",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.contextEditProject",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.contextCreateSnapshot",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.contextRestoreSnapshot",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.contextClearSnapshot",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.contextDelete",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.contextMysqlSSH",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.contextDBLaunch",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.treeChangeToAllListView",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.treeChangeToWorkspaceListView",
+          "when": "false"
+        },
+        {
+          "command": "biatiddev.showDDEVOutputChannel",
+          "when": "false"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "DDEV Manager",
+      "properties": {
+        "ddevManager.automaticallyConfigureWorkspacePHP": {
+          "order": 1,
+          "type": "boolean",
+          "default": true,
+          "description": "If enabled, the extension will get the PHP version configured on your DDEV project and will configure the workspace to use the same version so you can get appropriate suggestions and diagnostics. You need to install a PHP intellisen extension in order for this to work, currently it supports the following extensions: PHP Intelephense and PHP by Devsense"
+        },
+        "ddevManager.defaultDatabaseManager": {
+          "order": 1,
+          "type": "string",
+          "default": "Not configured",
+          "enum": [
+            "Not configured",
+            "TablePlus",
+            "Sequel Ace",
+            "Querious",
+            "Sequel Pro",
+            "PHP MyAdmin",
+            "Adminer",
+            "VS Code Database Client extension"
+          ],
+          "description": "Select the database manager you want to use",
+          "enumDescriptions": [
+            "Select a valid option to be able to open the database directly with DDEV Manager",
+            "Requires TablePlus app. Available for Mac and Windows",
+            "Requires Sequel Ace app. Available for Mac Only",
+            "Requires Querious app. Available for Mac Only",
+            "Requires Sequel Pro. Available for Mac Only",
+            "Requires PHP MyAdmin service. If the service is still not installed the extension will install it automatically",
+            "Requires Adminer service. If the service is still not installed the extension will install it automatically",
+            "Requires the Paid version of Database Client vscode extension, the paid version is necessary to be able to save connections in the workspace"
+          ]
+        },
+        "ddevManager.showProjectsList": {
+          "order": 2,
+          "type": "string",
+          "default": "All Projects",
+          "enum": [
+            "All Projects",
+            "Current Workspace"
+          ],
+          "enumDescriptions": [
+            "Display all DDEV Projects",
+            "Display only the DDEV project for the current workspace, if not found the full list will be displayed"
+          ]
+        },
+        "ddevManager.showServicesExpandedInSidebar": {
+          "order": 3,
+          "type": "boolean",
+          "default": true,
+          "description": "If enabled, when expanding a project in the sidebar, it's services will also expand."
+        },
+        "ddevManager.showSuccessNotifications": {
+          "order": 4,
+          "type": "boolean",
+          "default": true,
+          "description": "Show a notification after calling commands using the command palette and everything worked correctly (only for some commands like start, stop, restart or power off). You will always get notifications if the command failed."
+        },
+        "ddevManager.showStatusBarProcessIndicator": {
+          "order": 5,
+          "type": "boolean",
+          "default": true,
+          "description": "Show a spinning indicator when calling commands using the command palette to indicate that the command is being executed, if clicked it will display the command output so you can see what DDEV is returning in real time."
+        },
+        "ddevManager.omitSnapshotOnProjectDelete": {
+          "order": 6,
+          "type": "boolean",
+          "default": false,
+          "description": "When deleteing a project, by default DDEV creates a snapshot of the database, if this option is enabled, snapshots will not be created when a project is deleted"
+        }
+      }
+    },
+    "terminal": {
+      "profiles": [
+        {
+          "icon": "$(code)",
+          "id": "biatiddev.sshterminal",
+          "title": "DDEV SSH"
+        }
+      ]
+    }
+  },
+  "capabilities": {
+    "virtualWorkspaces": false,
+    "untrustedWorkspaces": {
+      "supported": true
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.70.0",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "@vscode/test-electron": "^2.1.5",
+    "eslint": "^8.20.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.7.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "@vscode/webview-ui-toolkit": "^1.2.1",
+    "rxjs": "^7.8.0",
+    "yaml": "^2.2.1"
+  }
+}
