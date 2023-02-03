@@ -2,7 +2,7 @@
 
 VS Code extension to manage DDEV. This extension will help you to manage DDEV without the need to open the terminal, run commands, etc. You can manage all your projects directly from vscode.
 
-![Alt text](assets/ddev-preview.jpg)
+![Preview](assets/ddev-preview.png)
 
 ## Features
 
